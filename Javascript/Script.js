@@ -174,29 +174,80 @@ window.addEventListener('load', () => {
   // Manually trigger scroll to re-activate observers
   window.dispatchEvent(new Event('scroll'));
 });
-//Form Validation
+// Form Validation and Submission
+document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.getElementById("contact-form");
+  const formMessage = document.getElementById("form-message");
 
-function validateform() {
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  const fname = document.getElementById("fname").value.trim();
-  const lname = document.getElementById("lname").value.trim();
-  const email = document.getElementById("email").value.trim();
+      // Basic validation
+      const fname = document.getElementById("fname").value.trim();
+      const lname = document.getElementById("lname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const comment = document.getElementById("comment").value.trim();
 
-  //Adding Validation by JS
-  if (fname == "") {
-    alert("Please Submit Firstname");
-    return false;
-  } else if (lname == "") {
-    alert("Please Submit Lastname");
-    return false;
-  } else if (email == "") {
-    alert("Please Submit Email");
-    return false;
-  } else {
-    alert("Form Submitted Successfully !!");
-    return true;
+      if (!fname || !lname || !email || !comment) {
+        showMessage("Please fill in all required fields.", "alert-error");
+        return;
+      }
+
+      // Show loading state
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString(),
+        });
+
+        if (response.ok) {
+          showMessage("Message sent successfully! I will get back to you soon.", "alert-success");
+          contactForm.reset();
+        } else {
+          throw new Error("Form submission failed");
+        }
+      } catch (error) {
+        console.error("Submission error:", error);
+        showMessage("Oops! Something went wrong. Please try again later.", "alert-error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+    });
   }
 
+  function showMessage(text, type) {
+    if (formMessage) {
+      formMessage.textContent = text;
+      formMessage.className = `alert-container ${type}`;
+      formMessage.style.display = "block";
 
+      // Scroll to message
+      formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Hide success message after 5 seconds
+      if (type === "alert-success") {
+        setTimeout(() => {
+          formMessage.style.display = "none";
+        }, 5000);
+      }
+    } else {
+      alert(text);
+    }
+  }
+});
+
+function validateform() {
+  // This is kept for backward compatibility if called inline, 
+  // but the new event listener is preferred.
+  return true;
 }
 
