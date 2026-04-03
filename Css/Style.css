@@ -808,7 +808,11 @@ a:hover {
 .Docker-Tech,
 .Kubernetes-Tech,
 .CICD-Tech,
-.Jira-Tech {
+.Jira-Tech,
+.Logstash-Tech,
+.Kibana-Tech,
+.Kafka-Tech,
+.Rabbitmq-Tech {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -849,7 +853,11 @@ a:hover {
 .Docker-Tech:hover,
 .Kubernetes-Tech:hover,
 .CICD-Tech:hover,
-.Jira-Tech:hover {
+.Jira-Tech:hover,
+.Logstash-Tech:hover,
+.Kibana-Tech:hover,
+.Kafka-Tech:hover,
+.Rabbitmq-Tech:hover {
     background: rgba(99, 102, 241, 0.1);
     border-color: var(--primary-color);
     transform: translateX(5px);
@@ -879,7 +887,11 @@ a:hover {
 .elasticsearch-image,
 .docker-image,
 .kubernetes-image,
-.cicd-image {
+.cicd-image,
+.logstash-image,
+.kibana-image,
+.kafka-image,
+.rabbitmq-image {
     height: 35px;
 }
 
@@ -914,7 +926,11 @@ a:hover {
 .docker-title,
 .kubernetes-title,
 .cicd-title,
-.jira-title {
+.jira-title,
+.logstash-title,
+.kibana-title,
+.kafka-title,
+.rabbitmq-title {
     margin-top: 5px;
     font-size: 1.2rem;
     font-weight: 500;
@@ -1016,9 +1032,13 @@ a:hover {
     margin-top: 14px;
 }
 
+.github-image,
+.kafka-image {
+    filter: invert(1);
+}
+
 .github-image {
     height: 40px;
-    filter: invert(1);
 }
 
 .mysql-image {
