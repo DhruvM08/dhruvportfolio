@@ -806,6 +806,7 @@ a:hover {
 .Zipkin-Tech,
 .Elasticsearch-Tech,
 .Docker-Tech,
+.Azure-Tech,
 .Kubernetes-Tech,
 .CICD-Tech,
 .Jira-Tech,
@@ -854,6 +855,7 @@ a:hover {
 .Zipkin-Tech:hover,
 .Elasticsearch-Tech:hover,
 .Docker-Tech:hover,
+.Azure-Tech:hover,
 .Kubernetes-Tech:hover,
 .CICD-Tech:hover,
 .Jira-Tech:hover,
@@ -889,6 +891,7 @@ a:hover {
 .zipkin-image,
 .elasticsearch-image,
 .docker-image,
+.azure-image,
 .kubernetes-image,
 .cicd-image,
 .logstash-image,
@@ -927,6 +930,7 @@ a:hover {
 .zipkin-title,
 .elasticsearch-title,
 .docker-title,
+.azure-title,
 .kubernetes-title,
 .cicd-title,
 .jira-title,
@@ -1824,10 +1828,10 @@ details[open] .dropdown-icon {
 }
 
 .company-logo {
-
     height: 60px;
+    max-width: 200px;
+    object-fit: contain;
     border-radius: 12px;
-
 }
 
 .role-title {
